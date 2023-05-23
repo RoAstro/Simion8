@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simion8</title>
+</head>
+<body id="body">
+<center>
+    
+    <h1 style="font-family: Arial, Helvetica, sans-serif;font-size: 200%;">Simion8 Chat</h1>
+    <h2 id="usr"></h2>
+    <div id="chat" style="border-style: solid;">
+
+
+    </div>
+    <br><br><br><br>
+    <div><input type="text" id="chat_input" style="border-radius: 10px;background-color: rgb(209, 229, 248);height: 30%;font-size: 27px;font-family: Arial, Helvetica, sans-serif;">     <button class="material-icons"  onclick="send()">send</button><br><br><br><button class="material-icons" onclick="get()">refresh</button></div>
+</center>
+
+    
+    <script>
+       acces_request();
+ 
+        i=0;
+        nr=0;
+        get();
+       function get(){
+          fetch('https://getpantry.cloud/apiv1/pantry/604b6883-c030-4616-b565-d764dafae93c/basket/simion8basket', {
+   headers: {
+      'Accept': 'application/json'
+   }
+})
+   .then(response => response.text())
+   .then(text => {nr=JSON.parse(text).no; while(i < JSON.parse(text).no){i++;  const para = document.createElement("p");ir='t'+i; const node = document.createTextNode(JSON.parse(text)[ir]);para.appendChild(node);const element = document.getElementById("chat");element.appendChild(para);}})//document.getElementById("chat").appendChild(document.createElement("p").appendChild(document.createTextNode(JSON.parse(text)[i])))}})
+      }    
+
+     
+       
+      function acces_request(){
+     pass_daniel='1234';
+     pass_lumi='2345';
+     pass_tudor='5555';
+     pass_dev='ffff4';
+
+     pass_input=prompt("Introdu parola de acces");
+
+  if(pass_input==pass_daniel){user="Daniel: ";alert('User: Daniel')}
+  else if(pass_input==pass_lumi){user='Luminita: ';alert('User: Luminita')}else if(pass_input==pass_tudor){user="Tudor: ";alert('User: Tudor')}else if(pass_input==pass_dev){user='Dev';alert('User: dev')}else if(pass_input!=pass_dev){const elementa = document.getElementById("body");elementa.remove();alert('Acces nepermis!')}
+document.getElementById('usr').innerHTML='User: '+user;
+}
+    
+      
+        
+       
+function send(){
+    nr++;
+    nrh='t'+nr;
+    data_send=user+document.getElementById("chat_input").value;
+
+
+
+   document.getElementById("chat_input").value="";
+    fetch('https://getpantry.cloud/apiv1/pantry/604b6883-c030-4616-b565-d764dafae93c/basket/simion8basket', {
+    method: 'PUT',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ [nrh]: data_send})
+})  
+fetch('https://getpantry.cloud/apiv1/pantry/604b6883-c030-4616-b565-d764dafae93c/basket/simion8basket', {
+    method: 'PUT',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({no: nr})
+})  
+
+}
+      
+    </script>
+</body>
+</html>
