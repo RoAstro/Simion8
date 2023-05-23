@@ -21,9 +21,10 @@
 </center>
 
     
-    <script>
+    <script>const d=new Date();
        acces_request();
- 
+      
+
         i=0;
         nr=0;
         get();
@@ -45,10 +46,11 @@
      pass_tudor='2172';
      pass_dev='ffff4';
 
-     pass_input=prompt("Introdu codul de acces");
+     pass_input=prompt("Introdu parola de acces");
+     data=d.getDate()+'/'+d.getMonth()+'/'+d.getFullYear()+'-'+d.getHours()+':'+d.getMinutes();
 
-  if(pass_input==pass_daniel){user="Daniel: ";alert('User: Daniel')}
-  else if(pass_input==pass_lumi){user='Luminita: ';alert('User: Luminita')}else if(pass_input==pass_tudor){user="Tudor: ";alert('User: Tudor')}else if(pass_input==pass_dev){user='Dev';alert('User: dev')}else if(pass_input!=pass_dev){const elementa = document.getElementById("body");elementa.remove();alert('Acces nepermis!')}
+  if(pass_input==pass_daniel){user="Daniel("+data+'):';alert('User: Daniel')}
+  else if(pass_input==pass_lumi){user='Luminita('+data+'):';alert('User: Luminita')}else if(pass_input==pass_tudor){user="Tudor("+data+'):';alert('User: Tudor')}else if(pass_input==pass_dev){user="Dev("+data+'):';alert('User: dev')}else if(pass_input!=pass_dev){const elementa = document.getElementById("body");elementa.remove();alert('Acces nepermis!')}
 document.getElementById('usr').innerHTML='User: '+user;
 }
     
